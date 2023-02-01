@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"name": "TesisServer",
+			"path": "../../TesisServer"
+		},
+		{
+			"name": "interfaceTesis",
+			"path": ".."
+		},
+		{
+			"name": "HA Codes Pack",
+			"path": "../../HA Codes Pack"
+		},
+		{
+			"name": "web3Deploy",
+			"path": "../../web3Deploy"
+		},
+		{
+			"name": "interfacevue3",
+			"path": "../../interfacevue3"
+		}
+	],
+	"settings": {}
+}

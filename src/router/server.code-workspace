@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../../../server"
+		},
+		{
+			"path": "../../../electron-version"
+		},
+		{
+			"path": "../../../../Downloads/Trabajo_Final-devel"
+		},
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {}
+}
