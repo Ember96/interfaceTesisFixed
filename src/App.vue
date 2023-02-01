@@ -54,15 +54,23 @@
       <router-link to="/upload">Subir</router-link>
     </nav>
     <router-view/>
+    <v-overlay
+      v-if="loginAttemp"
+    >
+      <LoginComponent/>
+    </v-overlay>
+    <v-btn huge color="primary" @click="loginAttemp = true">Login</v-btn>
     <FooterComponent class="position:fixed; bottom:0;"></FooterComponent>
   </v-app>
 </template>
 
 <script>
 import FooterComponent from "./components/FooterComponent.vue";
+import LoginComponent from "./components/LoginComponent.vue";
   export default {
     components: {
       FooterComponent,
+      LoginComponent
        },
     data: () => ({
       links: [
@@ -75,6 +83,7 @@ import FooterComponent from "./components/FooterComponent.vue";
       ],
       windowHeight: window.innerHeight,
       windowWidth: window.innerWidth,
+      loginAttemp : false
     }),
   }
 </script>
