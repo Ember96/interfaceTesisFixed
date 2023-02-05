@@ -34,15 +34,29 @@
     class="ma-2"
     >
       <v-list-item-group v-model="model">
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title>Tipo</v-list-item-title>
+          </v-list-item-content>
+          <v-list-item-content>
+            <v-list-item-title>Nombre de archivo</v-list-item-title>
+          </v-list-item-content>
+          <v-list-item-content>
+            <v-list-item-title>Tamaño de archivo</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item
-          v-for="(item, i) in items"
+          v-for="(file, i) in files"
           :key="i"
         >
           <v-list-item-icon>
-            <v-icon v-text="item.icon"></v-icon>
+            <v-icon v-text="file.icon"></v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title v-text="item.text"></v-list-item-title>
+            <v-list-item-title v-text="file.name"></v-list-item-title>
+          </v-list-item-content>
+          <v-list-item-content>
+            <v-list-item-title>{{ file.size }} kilobytes</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list-item-group>
@@ -62,6 +76,7 @@
     shaped
     >
     <UploadData
+    @fileData="getFileData"
     ></UploadData>
     </v-card>
     <v-card
@@ -71,7 +86,7 @@
     elevation="5"
     outlined
     >
-      <ContractStarter></ContractStarter>
+      <ContractStarter :fileData="fileData"></ContractStarter>
     </v-card>
     </v-card>
   </v-app>
@@ -87,17 +102,25 @@ export default {
         ContractStarter,
     },
     data: () => ({
-      items: [
-        {
-          icon: 'mdi-file',
-          text: 'Some files',
-        },
-      ],
+      files: [],
       model: 1,
       windowHeight: window.innerHeight,
       windowWidth: window.innerWidth,
+      fileData: [],
     }),
     methods: {
+      getFileData(fileData) {
+        this.fileData = fileData
+        console.log(fileData);
+        console.log(fileData[0].slice(0,5));
+        let icon = ""
+        if (fileData[0].slice(0,5) == "image") icon = "mdi-image"
+        else if (fileData[0].slice(0,5) == "audio") icon = "mdi-music-box-outline"
+        else if (fileData[0].slice(0,5) == "video") icon = "mdi-movie-open-outline"
+        else icon = "mdi-file"
+        this.files.push({icon: icon, name: fileData[1], size: fileData[2]})
+        console.log(icon);
+      },
     },
     mounted () {
     }

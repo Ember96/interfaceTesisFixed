@@ -14,7 +14,7 @@
             >
             </v-card>
             <v-spacer></v-spacer>
-            <v-btn outlined color="white">Firmar<v-icon>mdi-draw-pen</v-icon></v-btn>
+            <v-btn outlined color="white" :disabled="!consentCheck" @click="signContract">Firmar<v-icon>mdi-draw-pen</v-icon></v-btn>
     </v-app-bar>
   <v-form v-model="valid">
         <v-container>
@@ -48,6 +48,7 @@
               md="4"
             >
             <v-text-field
+                v-model="payment"
                 label="Remuneración esperada"
                 value="00.00"
                 prefix="$"
@@ -79,12 +80,12 @@
                 </template>
               </v-combobox>
             </v-col>
-            <v-col>
+            <!--<v-col>
               <v-select
                 :items="dataFormatItems"
                 label="Formato de los datos"
               ></v-select>
-            </v-col>
+            </v-col>-->
             <v-col>
               <v-checkbox
               v-model="consentCheck"
@@ -102,6 +103,7 @@
 
 <script>
 export default {
+    props: ['fileData'],
     data: () => ({
       consentCheck: false,
       valid: false,
@@ -117,9 +119,10 @@ export default {
         v => /.+@.+/.test(v) || 'E-mail must be valid',
       ],
       dataTypeItems: ['Grabaciones de voz', 'Electrocardiograma', 'Trazas de movilidad', 'Historial médico'],
-      dataFormatItems: ['Audio', 'Video', 'Imagen', 'Documento', 'Otro'],
+      //dataFormatItems: ['Audio', 'Video', 'Imagen', 'Documento', 'Otro'],
       dataType: [],
       search: null,
+      payment: Number
     }),
     watch: {
       dataType (val) {
@@ -127,6 +130,28 @@ export default {
           this.$nextTick(() => this.dataType.pop())
         }
       },
+    },
+    methods: {
+      async signContract () {
+        console.log(this.fileData);
+        await this.$axios.post('data', {
+                ipfsAddr: 'me lo acabo de inventar',//this.fileData[3],
+                fileName: this.fileData[1],
+                fileSize: this.fileData[2],
+                dataFormat: this.fileData[0],
+                remuneration: this.payment,
+                dataTypes: this.dataType,
+                patientNames: this.firstname,
+                patientLastNames: this.lastname,
+                user_id: '63de24bc09fbd8f7689f55aa'
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+      }
     },
 }
 </script>

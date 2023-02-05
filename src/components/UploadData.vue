@@ -52,6 +52,7 @@
       color="primary"
       large
       class="mr-8"
+      @click="onSubmit"
       >
       Subir
       <v-icon
@@ -91,11 +92,11 @@ export default {
         reader.readAsArrayBuffer(file);
         reader.onloadend = async () => {
           this.buffer = await this.convertToBuffer(reader.result);
-          console.log(this.buffer + 'while capture');
+          //console.log(this.buffer + 'while capture');
         };
       } else {
         this.buffer = '';
-        console.log(this.buffer + 'after capture');
+        //console.log(this.buffer + 'after capture');
       }
       
     },
@@ -103,9 +104,9 @@ export default {
       alert('Uploading on IPFS...');
       this.$root.loading = true;
       //let imgHash;
-    console.log('1');
       let added = await ipfs.add(this.buffer);
       console.log(added);
+      this.$emit('fileData', [this.type, this.name, this.size, added.path])
     },
     /**
      * validates if image & captions
