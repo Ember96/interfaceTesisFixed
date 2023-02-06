@@ -115,9 +115,8 @@ export default {
             .catch(function (error) {
                 console.log(error);
             });
-            console.log(this.userData, 'local');
-            this.$store.commit('update$userData', this.userData);
-            console.log(this.$userData, 'vuex');
+            this.$store.state.userData = this.userData;
+            console.log(this.$store.state.userData);
         },
     },
 }

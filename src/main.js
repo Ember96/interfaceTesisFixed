@@ -7,13 +7,19 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-const store = new Vuex.Store({
-  state: {
-    $userData: {}
-  },
-  mutations: {
-    update$userData: function(state, newUserData) { state.$userData = newUserData; }
+const state = {
+  userData: {}
+}
+
+const mutations = {
+  update (state, userData) {
+    state.userData = userData;
   }
+}
+
+const store = new Vuex.Store({
+  state,
+  mutations,
 });
 
 const axiosClient = axios.create({
@@ -23,7 +29,7 @@ const axiosClient = axios.create({
 
 Vue.config.productionTip = false;
 Vue.prototype.$axios = axiosClient;
-Vue.prototype.$userData = {};
+//Vue.prototype.$userData = {};
 
 
 new Vue({

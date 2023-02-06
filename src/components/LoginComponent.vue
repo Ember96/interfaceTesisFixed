@@ -65,8 +65,8 @@ export default {
             .catch(function (error) {
                 console.log(error);
             });
-            this.$store.state.$userData = this.userData;
-            console.log(this.$userData);
+            this.$store.state.userData = this.userData;
+            console.log(this.$store.state.userData);
             this.$emit('login', 'correct');
         },
         incorrectData () {

@@ -121,8 +121,34 @@ export default {
         this.files.push({icon: icon, name: fileData[1], size: fileData[2]})
         console.log(icon);
       },
+      fillFileList (files) {
+        console.log(files);
+        files.forEach(element => {
+          let icon = ""
+          if (element.dataFormat == "image") icon = "mdi-image"
+          else if (element.dataFormat == "audio") icon = "mdi-music-box-outline"
+          else if (element.dataFormat == "video") icon = "mdi-movie-open-outline"
+          else icon = "mdi-file"
+          this.files.push({icon: icon, name: element.fileName, size: element.fileSize})
+        });
+      },
+      async getUserFiles () {
+        let id = this.$store.state.userData._id
+        console.log(id);
+        let files = await this.$axios.get(`users/${id}`)
+            .then(function (response) {
+                console.log(response);
+                return response
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+            console.log(files);
+        this.fillFileList(files);
+      },
     },
     mounted () {
+      this.getUserFiles()
     }
   }
 </script>

@@ -167,9 +167,8 @@ export default {
             });
       },
       updateNames () {
-        console.log(this.$userData);
-        this.firstname = this.$store.state.$userData.names;
-        this.lastname = this.$store.state.$userData.lastNames;
+        this.firstname = this.$store.state.userData.names;
+        this.lastname = this.$store.state.userData.lastNames;
       },
     },
     /*created() {
