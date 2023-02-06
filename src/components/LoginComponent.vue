@@ -37,6 +37,7 @@
     </v-btn>
     <v-btn
     color="error"
+    @click="incorrectData"
     >
     Cancelar
     </v-btn>
@@ -53,17 +54,23 @@ export default {
     }),
     methods: {
         async login () {
-            await this.$axios.post('login', {
+            this.userData = await this.$axios.post('login', {
                 username: this.username,
                 secret: this.secret
             })
             .then(function (response) {
                 console.log(response);
-                this.userData = response.data
+                return response.data.usuarioDb
             })
             .catch(function (error) {
                 console.log(error);
             });
+            this.$store.state.$userData = this.userData;
+            console.log(this.$userData);
+            this.$emit('login', 'correct');
+        },
+        incorrectData () {
+          this.$emit('login', 'cancelled');
         }
     },
 }

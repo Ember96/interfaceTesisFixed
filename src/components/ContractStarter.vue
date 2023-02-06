@@ -21,6 +21,19 @@
           <v-row>
             <v-col
               cols="12"
+              md="2"
+            >
+              <v-checkbox
+                v-model="ownData"
+                @click="updateNames"
+                label="Son mis datos"
+                color="primary"
+                value="primary"
+                hide-details
+              ></v-checkbox>
+            </v-col>
+            <v-col
+              cols="12"
               md="4"
             >
               <v-text-field
@@ -45,7 +58,7 @@
 
             <v-col
               cols="12"
-              md="4"
+              md="2"
             >
             <v-text-field
                 v-model="payment"
@@ -106,9 +119,10 @@ export default {
     props: ['fileData'],
     data: () => ({
       consentCheck: false,
+      ownData: false,
       valid: false,
-      firstname: '',
-      lastname: '',
+      firstname: '',//this.$userData.names,
+      lastname: '',//this.$userData.lastNames,
       nameRules: [
         v => !!v || 'Se necesita un nombre',
         v => v.length >= 2 || 'Demasiado corto',
@@ -122,7 +136,7 @@ export default {
       //dataFormatItems: ['Audio', 'Video', 'Imagen', 'Documento', 'Otro'],
       dataType: [],
       search: null,
-      payment: Number
+      payment: 0
     }),
     watch: {
       dataType (val) {
@@ -151,8 +165,16 @@ export default {
             .catch(function (error) {
                 console.log(error);
             });
-      }
+      },
+      updateNames () {
+        console.log(this.$userData);
+        this.firstname = this.$store.state.$userData.names;
+        this.lastname = this.$store.state.$userData.lastNames;
+      },
     },
+    /*created() {
+ 
+    },*/
 }
 </script>
 

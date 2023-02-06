@@ -55,22 +55,35 @@
     </nav>
     <router-view/>
     <v-overlay
+      v-if="registerAttemp"
+    >
+      <RegisterUser/>
+    </v-overlay>
+    <v-overlay
       v-if="loginAttemp"
     >
-      <LoginComponent/>
+      <LoginComponent @login="handleLogin"></LoginComponent>
     </v-overlay>
     <v-btn huge color="primary" @click="loginAttemp = true">Login</v-btn>
+    <v-btn huge color="primary" @click="registerAttemp = true">Register</v-btn>
     <FooterComponent class="position:fixed; bottom:0;"></FooterComponent>
+    <v-alert
+      v-if="loginSucces"
+      elevation="3"
+      type="success"
+    >Se ha autenticado correctamente</v-alert>
   </v-app>
 </template>
 
 <script>
 import FooterComponent from "./components/FooterComponent.vue";
 import LoginComponent from "./components/LoginComponent.vue";
+import RegisterUser from "./components/RegisterUser.vue";
   export default {
     components: {
       FooterComponent,
-      LoginComponent
+      LoginComponent,
+      RegisterUser
        },
     data: () => ({
       links: [
@@ -83,7 +96,17 @@ import LoginComponent from "./components/LoginComponent.vue";
       ],
       windowHeight: window.innerHeight,
       windowWidth: window.innerWidth,
-      loginAttemp : false
+      loginAttemp : false,
+      registerAttemp: false,
+      loginSucces: false,
     }),
+    methods: {
+      handleLogin (login) {
+        if (login == 'success') {
+          this.loginSucces = true;
+        }
+        this.loginAttemp = false;
+      }
+    },
   }
 </script>
