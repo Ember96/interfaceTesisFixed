@@ -27,7 +27,7 @@
               color="white"
               icon
             >
-              <v-icon>mdi-refresh</v-icon>
+              <v-icon @click="fillFileList">mdi-refresh</v-icon>
             </v-btn>
     </v-app-bar>
     <v-list
@@ -107,22 +107,22 @@ export default {
       windowHeight: window.innerHeight,
       windowWidth: window.innerWidth,
       fileData: [],
+      userFiles: []
     }),
     methods: {
       getFileData(fileData) {
         this.fileData = fileData
         console.log(fileData);
-        console.log(fileData[0].slice(0,5));
         let icon = ""
         if (fileData[0].slice(0,5) == "image") icon = "mdi-image"
         else if (fileData[0].slice(0,5) == "audio") icon = "mdi-music-box-outline"
         else if (fileData[0].slice(0,5) == "video") icon = "mdi-movie-open-outline"
         else icon = "mdi-file"
         this.files.push({icon: icon, name: fileData[1], size: fileData[2]})
-        console.log(icon);
       },
-      fillFileList (files) {
-        console.log(files);
+      fillFileList () {
+        console.log(this.userFiles);
+        let files = this.userFiles
         files.forEach(element => {
           let icon = ""
           if (element.dataFormat == "image") icon = "mdi-image"
@@ -135,16 +135,16 @@ export default {
       async getUserFiles () {
         let id = this.$store.state.userData._id
         console.log(id);
-        let files = await this.$axios.get(`users/${id}`)
+        this.userFiles = await this.$axios.get(`users/${id}`)
             .then(function (response) {
                 console.log(response);
-                return response
+                return response.data.files
             })
             .catch(function (error) {
                 console.log(error);
             });
-            console.log(files);
-        this.fillFileList(files);
+            console.log(this.userFiles);
+            this.fillFileList();
       },
     },
     mounted () {

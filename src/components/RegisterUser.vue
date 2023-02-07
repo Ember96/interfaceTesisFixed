@@ -80,6 +80,7 @@
     </v-btn>
     <v-btn
     color="error"
+    @click="incorrectData"
     >
     Cancelar
     </v-btn>
@@ -117,6 +118,10 @@ export default {
             });
             this.$store.state.userData = this.userData;
             console.log(this.$store.state.userData);
+            this.$emit('register', 'correct');
+        },
+        incorrectData () {
+          this.$emit('register', 'cancelled');
         },
     },
 }

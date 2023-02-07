@@ -149,7 +149,7 @@ export default {
       async signContract () {
         console.log(this.fileData);
         await this.$axios.post('data', {
-                ipfsAddr: 'me lo acabo de inventar',//this.fileData[3],
+                ipfsAddr: this.fileData[3],//this.fileData[3],
                 fileName: this.fileData[1],
                 fileSize: this.fileData[2],
                 dataFormat: this.fileData[0],
@@ -157,7 +157,7 @@ export default {
                 dataTypes: this.dataType,
                 patientNames: this.firstname,
                 patientLastNames: this.lastname,
-                user_id: '63de24bc09fbd8f7689f55aa'
+                user_id: this.$store.state.userData._id
             })
             .then(function (response) {
                 console.log(response);
@@ -167,6 +167,7 @@ export default {
             });
       },
       updateNames () {
+        console.log(this.$store.state.userData);
         this.firstname = this.$store.state.userData.names;
         this.lastname = this.$store.state.userData.lastNames;
       },
