@@ -125,9 +125,9 @@ export default {
         let files = this.userFiles
         files.forEach(element => {
           let icon = ""
-          if (element.dataFormat == "image") icon = "mdi-image"
-          else if (element.dataFormat == "audio") icon = "mdi-music-box-outline"
-          else if (element.dataFormat == "video") icon = "mdi-movie-open-outline"
+          if (element.dataFormat.slice(0,5) == "image") icon = "mdi-image"
+          else if (element.dataFormat.slice(0,5) == "audio") icon = "mdi-music-box-outline"
+          else if (element.dataFormat.slice(0,5) == "video") icon = "mdi-movie-open-outline"
           else icon = "mdi-file"
           this.files.push({icon: icon, name: element.fileName, size: element.fileSize})
         });

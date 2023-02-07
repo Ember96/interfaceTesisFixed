@@ -32,7 +32,7 @@
         md=1
         class="primary  py-4 text-center white--text"
         >
-        <v-btn text primary>Manejo de Datos</v-btn>
+        <v-btn text primary @click="$router.push('upload/')">Manejo de Datos</v-btn>
         </v-col>
         <v-col
         cols=12
@@ -61,7 +61,15 @@
       elevation="3"
       type="success"
       @click="loginSuccess = false"
-    >Se ha autenticado correctamente</v-alert>
+    >Se ha autenticado correctamente
+    </v-alert>
+    <v-alert
+      v-if="noBalance"
+      elevation="3"
+      type="error"
+      @click="noBalance = false"
+    >Se ha autenticado correctamente
+    </v-alert>
     </v-card>
   </v-app>
 </template>
@@ -82,6 +90,7 @@ import RegisterUser from "./components/RegisterUser.vue";
       loginAttemp : false,
       registerAttemp: false,
       loginSuccess: false,
+      noBalance: false
     }),
     methods: {
       handleLogin (login) {
@@ -95,6 +104,9 @@ import RegisterUser from "./components/RegisterUser.vue";
           this.registerAttemp = true;
         }
         this.registerAttemp = false;
+      },
+      handleBalance (balance) {
+        this.noBalance = balance;
       },
     },
   }
