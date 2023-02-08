@@ -92,7 +92,7 @@
             md=3
             class="text-center"
             >
-            <v-btn text color='blue'>Tamaño de archivo: {{ file.fileSize }} kilobytes</v-btn>
+            <v-btn text color='blue'>Tamaño de archivo: {{ file.fileSize }} B</v-btn>
             </v-col>
             <v-col
             cols=12
