@@ -30,7 +30,7 @@
     >Necesitas más créditos
     </v-alert>
     <v-card
-      :max-height=windowHeight
+      :height=windowHeight
       class="overflow-auto"
     >
     <v-expansion-panels
@@ -41,7 +41,32 @@
         v-for="(item,i) in usersFull"
         :key="i"
       >
-        <v-expansion-panel-header>{{ item.role }} {{ item.names }} {{ item.lastNames }}</v-expansion-panel-header>
+        <v-expansion-panel-header>
+          <v-row>
+            <v-col
+            cols=12
+            md=1
+            >
+            <v-chip
+            color="primary"
+            >
+            {{ item.role }}:
+            </v-chip>
+            </v-col>
+            <v-col
+            cols=12
+            md=4
+            class="text-left"
+            >
+            <v-btn
+              text
+              color="blue"
+              >
+                {{ item.names }} {{ item.lastNames }}
+            </v-btn>
+            </v-col>
+          </v-row>
+        </v-expansion-panel-header>
         <v-expansion-panel-content
           v-for="(file,j) in item.files"
           :key="j"

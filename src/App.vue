@@ -11,7 +11,7 @@
         cols=12
         md=4
         >
-        <v-btn text primary>Sistema de gestión de datos de sensado</v-btn>
+        <v-btn text primary @click="$router.replace({ path: '/' })">Sistema de gestión de datos de sensado</v-btn>
         </v-col>
         <v-col
         cols=12
@@ -32,14 +32,21 @@
         md=1
         class="primary  py-4 text-center white--text"
         >
-        <v-btn text primary @click="$router.push('upload/')">Manejo de Datos</v-btn>
+        <v-btn 
+        :disabled="!loggedIn" 
+        text 
+        primary 
+        @click="handleLoggedIn"
+        >
+        Manejo de Datos
+        </v-btn>
         </v-col>
         <v-col
         cols=12
         md=2
         class="primary  py-4 text-center white--text"
         >
-        <v-btn text primary>Acerca de este sitio</v-btn>
+        <v-btn text primary @click="$router.replace({ path: 'about/' })" >Acerca de este sitio</v-btn>
         </v-col>
       </v-row>
     </v-system-bar>
@@ -92,12 +99,14 @@ import RegisterUser from "./components/RegisterUser.vue";
       loginAttemp : false,
       registerAttemp: false,
       loginSuccess: false,
-      noBalance: false
+      noBalance: false,
+      loggedIn: false,
     }),
     methods: {
       handleLogin (login) {
         if (login == 'correct') {
           this.loginSuccess = true;
+          this.loggedIn = true;
         }
         this.loginAttemp = false;
       },
@@ -109,6 +118,12 @@ import RegisterUser from "./components/RegisterUser.vue";
       },
       handleBalance (balance) {
         this.noBalance = balance;
+      },
+      handleLoggedIn () {
+        if (typeof this.$store.state.userData._id != 'undefined') {
+        this.loggedIn = true;
+        this.$router.replace({ path: '/upload' }); 
+        }
       },
     },
   }

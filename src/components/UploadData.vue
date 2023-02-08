@@ -22,25 +22,27 @@
             </v-btn>
     </v-app-bar>
       
-    <v-container 
-    class="grey lighten-5"
+    <v-card
+    flat
+    class="pa-2"
     >
-      <v-subheader>Información del archivo</v-subheader>
+      <v-btn text color='blue' class="font-weight-black">Información del archivo</v-btn>
       <v-col no-gutters>
         <v-row>
-          <v-label>Nombre: {{ name }} </v-label>
+          <v-btn text color='blue'>Nombre: {{ name }} </v-btn>
         </v-row>
         <v-row>
-          <v-label>Tamaño: {{  size  }}</v-label>
+          <v-btn text color='blue'>Tamaño: {{  size  }}</v-btn>
         </v-row>
         <v-row>
-          <v-label>Tipo: {{ type }}</v-label>
+          <v-btn text color='blue'>Tipo: {{ type }}</v-btn>
         </v-row>
       </v-col>
-    </v-container>
+    </v-card>
     <v-file-input
       class="pa-10 mx-auto"
-      accept="image/*"
+      color="blue"
+      accept="*"
       label="Presione para seleccionar un archivo"
       v-model="uploadBtn"
       @change="captureFile(uploadBtn)"

@@ -33,18 +33,21 @@
     <v-list
     class="ma-2"
     >
-      <v-list-item-group v-model="model">
+      <v-list-item-group v-model="model" class="overflow-auto">
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title>Tipo</v-list-item-title>
+            <v-list-item-title><v-btn text color='blue'>Tipo</v-btn></v-list-item-title>
           </v-list-item-content>
           <v-list-item-content>
-            <v-list-item-title>Nombre de archivo</v-list-item-title>
+            <v-list-item-title><v-btn text color='blue'>Nombre de archivo</v-btn></v-list-item-title>
           </v-list-item-content>
           <v-list-item-content>
-            <v-list-item-title>Tamaño de archivo</v-list-item-title>
+            <v-list-item-title><v-btn text color='blue'>Tamaño de archivo</v-btn></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+      <v-list-item>
+        <v-divider></v-divider>
+      </v-list-item>
         <v-list-item
           v-for="(file, i) in files"
           :key="i"
@@ -53,10 +56,10 @@
             <v-icon v-text="file.icon"></v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title v-text="file.name"></v-list-item-title>
+            <v-list-item-title><v-btn text color='blue'>{{ file.name }} kilobytes</v-btn></v-list-item-title>
           </v-list-item-content>
           <v-list-item-content>
-            <v-list-item-title>{{ file.size }} kilobytes</v-list-item-title>
+            <v-list-item-title><v-btn text color='blue'>{{ file.size }} kilobytes</v-btn></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list-item-group>
@@ -69,7 +72,7 @@
     <v-card
     class="float-right mr-5"
     width="48.5%"
-    max-height="80%"
+    max-height="60%"
     min-height="45%"
     elevation="5"
     outlined
