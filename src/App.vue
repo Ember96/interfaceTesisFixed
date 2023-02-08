@@ -72,6 +72,13 @@
     >Se ha autenticado correctamente
     </v-alert>
     <v-alert
+      v-if="registerSuccess"
+      elevation="3"
+      type="success"
+      @click="registerSuccess = false"
+    >Se ha registrado correctamente
+    </v-alert>
+    <v-alert
       v-if="noBalance"
       elevation="3"
       type="error"
@@ -99,6 +106,7 @@ import RegisterUser from "./components/RegisterUser.vue";
       loginAttemp : false,
       registerAttemp: false,
       loginSuccess: false,
+      registerSuccess: false,
       noBalance: false,
       loggedIn: false,
     }),
