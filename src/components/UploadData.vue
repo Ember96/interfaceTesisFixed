@@ -103,7 +103,6 @@ export default {
       
     },
     async onSubmit() {
-      alert('Uploading on IPFS...');
       this.$root.loading = true;
       //let imgHash;
       let added = await ipfs.add(this.buffer);

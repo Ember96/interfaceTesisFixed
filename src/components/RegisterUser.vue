@@ -102,7 +102,7 @@ export default {
       lastNames: '',
       username: '',
       secret: '',
-      role: 'curator',
+      role: 'Curador de datos',
       balance: 100,
       userData: Object,
     }),

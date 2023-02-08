@@ -1,10 +1,10 @@
 <template>
   <v-app>
-    <v-card :height="windowHeight" :width="windowWidth">
+    <v-card height="windowHeight" :width="windowWidth" class="mt-3">
     <v-card
     class="float-left ml-5"
     width="48.5%"
-    height="45%"
+    height="60%"
     elevation="5"
     outlined
     shaped
@@ -52,11 +52,11 @@
           v-for="(file, i) in files"
           :key="i"
         >
-          <v-list-item-icon>
-            <v-icon v-text="file.icon"></v-icon>
-          </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title><v-btn text color='blue'>{{ file.name }} kilobytes</v-btn></v-list-item-title>
+            <v-icon v-text="file.icon"></v-icon>
+          </v-list-item-content>
+          <v-list-item-content>
+            <v-list-item-title><v-btn text color='blue'>{{ file.name }}</v-btn></v-list-item-title>
           </v-list-item-content>
           <v-list-item-content>
             <v-list-item-title><v-btn text color='blue'>{{ file.size }} kilobytes</v-btn></v-list-item-title>
@@ -107,7 +107,7 @@ export default {
     data: () => ({
       files: [],
       model: 1,
-      windowHeight: window.innerHeight,
+      windowHeight: window.innerHeight*0.7,
       windowWidth: window.innerWidth,
       fileData: [],
       userFiles: []

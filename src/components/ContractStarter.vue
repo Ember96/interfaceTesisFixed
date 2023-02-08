@@ -111,6 +111,13 @@
           </v-row>
         </v-container>
       </v-form>
+          <v-alert
+            v-if="signSuccess"
+            elevation="3"
+            type="success"
+            @click="signSuccess = false"
+          >Firmado correctamente
+          </v-alert>
     </v-card>
 </template>
 
@@ -136,7 +143,8 @@ export default {
       //dataFormatItems: ['Audio', 'Video', 'Imagen', 'Documento', 'Otro'],
       dataType: [],
       search: null,
-      payment: 0
+      payment: 0,
+      signSuccess: false,
     }),
     watch: {
       dataType (val) {
@@ -148,7 +156,7 @@ export default {
     methods: {
       async signContract () {
         console.log(this.fileData);
-        await this.$axios.post('data', {
+        let res = await this.$axios.post('data', {
                 ipfsAddr: this.fileData[3],//this.fileData[3],
                 fileName: this.fileData[1],
                 fileSize: this.fileData[2],
@@ -161,10 +169,14 @@ export default {
             })
             .then(function (response) {
                 console.log(response);
+                return response.data;
             })
             .catch(function (error) {
                 console.log(error);
             });
+        if (typeof res != 'undefined') {
+          this.signSuccess = true;
+        }
       },
       updateNames () {
         console.log(this.$store.state.userData);

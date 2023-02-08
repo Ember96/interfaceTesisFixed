@@ -45,12 +45,12 @@
           <v-row>
             <v-col
             cols=12
-            md=1
+            md=2
             >
             <v-chip
             color="primary"
             >
-            {{ item.role }}:
+            {{ item.role }}
             </v-chip>
             </v-col>
             <v-col
@@ -85,7 +85,7 @@
             cols=12
             md=4
             >
-            <v-btn text color='blue'>Nombre de archivo: {{ file.fileName }}</v-btn>
+            <v-btn text color='blue'>Nombre de archivo: {{ file.fileName.slice(0,30) }}</v-btn>
             </v-col>
             <v-col
             cols=12
