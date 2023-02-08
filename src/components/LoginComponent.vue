@@ -74,7 +74,12 @@ export default {
             });
             this.$store.state.userData = this.userData;
             console.log(this.$store.state.userData);
+            if (typeof this.userData !== "undefined") {
             this.$emit('login', 'correct');
+            }
+            else {
+              this.incorrectData
+            }
         },
         incorrectData () {
           this.$emit('login', 'cancelled');

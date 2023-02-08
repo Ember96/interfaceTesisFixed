@@ -194,12 +194,13 @@
         let sellerNewBalance = this.usersFull[seller].balance + this.usersFull[seller].files[chosenFile].remuneration;
         console.log(sellerNewBalance);
         let buyerNewFiles = this.$store.state.userData.files;
+        let newFile = this.usersFull[seller].files[chosenFile];
         buyerNewFiles.push(this.usersFull[seller].files[chosenFile]._id);
         let buyerID = this.$store.state.userData._id;
+        let sellerID = this.usersFull[seller]._id;
         if (buyerNewBalance >= 0) {
           await this.$axios.put(`users/${buyerID}`, {
-                balance: buyerNewBalance,
-                files: buyerNewFiles
+                balance: buyerNewBalance
             })
             .then(function (response) {
                 console.log(response, 'buyer update brute response');
@@ -209,8 +210,7 @@
             });
 
           await this.$axios.post(`data/${this.usersFull[seller].files[chosenFile]._id}`, {
-            user_id: this.usersFull[seller]._id,
-            fileIndex: chosenFile
+            user_id: this.usersFull[seller]._id
             })
           .then(function (response) {
               console.log(response, 'file delete brute response');
@@ -218,8 +218,38 @@
           .catch(function (error) {
               console.log(error);
           });
+
+          await this.$axios.post('data', {
+                ipfsAddr: newFile.ipfsAddr,//this.fileData[3],
+                fileName: newFile.fileName,
+                fileSize: newFile.fileSize,
+                dataFormat: newFile.dataFormat,
+                remuneration: newFile.remuneration,
+                dataTypes: newFile.dataTypes,
+                patientNames: newFile.patientNames,
+                patientLastNames: newFile.patientLastNames,
+                user_id: buyerID
+            })
+            .then(function (response) {
+                console.log(response, 'new file for buyer');
+                return response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+            await this.$axios.put(`users/${sellerID}`, {
+                balance: sellerNewBalance
+            })
+            .then(function (response) {
+                console.log(response, 'seller update brute response');
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
         } else this.noBalance = true;
-        
+        this.getAllUsers();
       }
   }
   }
