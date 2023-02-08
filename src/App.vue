@@ -55,7 +55,7 @@
       <LoginComponent @login="handleLogin"></LoginComponent>
     </v-overlay>
      <router-view/>
-    <FooterComponent class="position:fixed; bottom:0;"></FooterComponent>
+    <FooterComponent></FooterComponent>
     <v-alert
       v-if="loginSuccess"
       elevation="3"

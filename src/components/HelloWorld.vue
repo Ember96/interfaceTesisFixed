@@ -1,5 +1,5 @@
 <template>
-    <v-card width="80%" class="mx-auto">
+    <v-card width="80%" class="mx-auto my-3" elevation=6>
     <div class="text-center d-flex pb-4">
       <v-row>
         <v-col
@@ -29,6 +29,10 @@
       @click="noBalance = false"
     >Necesitas más créditos
     </v-alert>
+    <v-card
+      :max-height=windowHeight
+      class="overflow-auto"
+    >
     <v-expansion-panels
       v-model="panel"
       multiple
@@ -108,6 +112,7 @@
       </v-expansion-panel>
     </v-expansion-panels>
     </v-card>
+    </v-card>
 </template>
 
 <script>
@@ -117,6 +122,7 @@
 
     beforeMount() {
         this.getAllUsers();
+        this.windowHeight = window.innerHeight*0.70;
     },
     data: () => ({
       panel: [],
@@ -125,6 +131,8 @@
       unfold: false,
       contractChosen: Number,
       noBalance: false,
+      windowHeight: 0,
+      windowWidth: window.innerWidth,
     }),
     methods: {
       setWeb3Addr() {
@@ -149,6 +157,7 @@
                 return response.data;
             });
         console.log(this.usersFull, 'all users');
+        this.panelItems = this.usersFull.length;
         
       },
       getPanelContent () {
