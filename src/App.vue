@@ -46,6 +46,7 @@
     <v-card height='100%'>
       <v-dialog
       v-model="registerAttemp"
+      width="400"
     >
       <RegisterUser @register="handleRegister"></RegisterUser>
       </v-dialog>

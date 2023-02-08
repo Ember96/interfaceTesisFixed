@@ -3,6 +3,12 @@
   <v-form>
     <v-container>
       <v-col>
+        <v-btn
+        text
+        primary
+        class="text-align: left"
+        width="100%"
+        >Introduzca sus datos:</v-btn>
         <v-row
           cols="12"
           md="4"
@@ -72,11 +78,12 @@
     </v-container>
   </v-form>
   <v-card-actions>
+    <v-spacer></v-spacer>
      <v-btn
     color="success"
     @click="registerUser"
     >
-    Entrar
+    Registrar
     </v-btn>
     <v-btn
     color="error"
