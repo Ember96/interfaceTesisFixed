@@ -46,11 +46,11 @@
           v-for="(file,j) in item.files"
           :key="j"
         >
-          <v-row>Información de los datos: 
+          <v-row class="background-color: blue"><v-btn text color='white'>Información de los datos: </v-btn>
             <v-spacer></v-spacer>
             <v-btn
             text
-            color='blue'
+            color='white'
             @click="buy(i,j)"
             >Comprar
             </v-btn>
@@ -60,30 +60,30 @@
             cols=12
             md=4
             >
-            Nombre de archivo: {{ file.fileName }}
+            <v-btn text color='blue'>Nombre de archivo: {{ file.fileName }}</v-btn>
             </v-col>
             <v-col
             cols=12
-            md=2
+            md=3
             class="text-center"
             >
-            Tamaño de archivo: {{ file.fileSize }}
+            <v-btn text color='blue'>Tamaño de archivo: {{ file.fileSize }} kilobytes</v-btn>
             </v-col>
             <v-col
             cols=12
-            md=2
+            md=3
             class="text-center"
             >
-            Formato de archivo: {{ file.dataFormat }}
+            <v-btn text color='blue'>Formato de archivo: {{ file.dataFormat }}</v-btn>
             </v-col>
           </v-row>
             <v-row
             cols=12
-            md=12
-            class="text-center"
+            md=8
             >
-            Etiquetas: <v-chip
-                        class="ma-2"
+            <v-btn text color='blue' class="ml-3">Etiquetas:</v-btn> 
+                      <v-chip
+                        class="mx-2 my-1"
                         color="primary"
                         v-for="(dataType,k) in file.dataTypes"
                         :key="k"
@@ -94,10 +94,9 @@
             <v-row>
             <v-col
             cols=12
-            md=2
-            class="text-center"
+            md=4
             >
-            Precio: {{ file.remuneration }}
+            <v-btn text color='blue'>Precio: {{ file.remuneration }}</v-btn>
             </v-col>
             <v-col
             cols=12
