@@ -44,6 +44,9 @@
           <v-list-item-content>
             <v-list-item-title><v-btn text color='blue'>Tamaño de archivo</v-btn></v-list-item-title>
           </v-list-item-content>
+          <v-list-item-content>
+            <v-list-item-title><v-btn text color='blue'>Descargar</v-btn></v-list-item-title>
+          </v-list-item-content>
         </v-list-item>
       <v-list-item>
         <v-divider></v-divider>
@@ -61,6 +64,11 @@
           <v-list-item-content>
             <v-list-item-title><v-btn text color='blue'>{{ file.size }} kilobytes</v-btn></v-list-item-title>
           </v-list-item-content>
+        <v-list-item-content>
+        <v-list-item-icon>
+          <v-icon @click="getIpfsFile(i)">mdi-download</v-icon>
+        </v-list-item-icon>
+        </v-list-item-content>
         </v-list-item>
       </v-list-item-group>
     </v-list>
@@ -98,6 +106,8 @@
 <script>
 import UploadData from "../components/UploadData.vue";
 import ContractStarter from "../components/ContractStarter.vue";
+//import ipfs from '../ipfs';
+//import { Buffer } from 'buffer';
 
 export default {
     components: {
@@ -115,13 +125,13 @@ export default {
     methods: {
       getFileData(fileData) {
         this.fileData = fileData
-        console.log(fileData);
+        console.log(fileData, 'data received from upload');
         let icon = ""
         if (fileData[0].slice(0,5) == "image") icon = "mdi-image"
         else if (fileData[0].slice(0,5) == "audio") icon = "mdi-music-box-outline"
         else if (fileData[0].slice(0,5) == "video") icon = "mdi-movie-open-outline"
         else icon = "mdi-file"
-        this.files.push({icon: icon, name: fileData[1], size: fileData[2]})
+        this.files.push({icon: icon, name: fileData[1], size: fileData[2], addr: fileData[3]})
       },
       fillFileList () {
         console.log(this.userFiles);
@@ -132,7 +142,7 @@ export default {
           else if (element.dataFormat.slice(0,5) == "audio") icon = "mdi-music-box-outline"
           else if (element.dataFormat.slice(0,5) == "video") icon = "mdi-movie-open-outline"
           else icon = "mdi-file"
-          this.files.push({icon: icon, name: element.fileName, size: element.fileSize})
+          this.files.push({icon: icon, name: element.fileName, size: element.fileSize, addr: element.ipfsAddr})
         });
       },
       async getUserFiles () {
@@ -148,6 +158,25 @@ export default {
             });
             console.log(this.userFiles);
             this.fillFileList();
+      },
+      async getIpfsFile (index) {
+        //let downloaded = await ipfs.cat(this.files[index][3]);
+                          /*.then(function (response) {
+                              console.log(response);
+                              return response.data;
+                          })
+                          .catch(function (error) {
+                              console.log(error);
+                          });*/
+          /*let content = [];
+          console.log(this.files, 'all files');
+          console.log(this.files[index].addr, 'file to cat');
+        for await (const chunk of ipfs.cat(this.files[index].addr)) {
+          content = [...content, ...chunk];
+        }
+        console.log(content);
+        console.log(Buffer.from(content).toString('base64'), 'buffer');*/
+        window.open('https://tesis.infura-ipfs.io/ipfs/' + this.files[index].addr);
       },
     },
     mounted () {
