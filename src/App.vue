@@ -11,7 +11,7 @@
         cols=12
         md=4
         >
-        <v-btn text primary>Sistema que hace cosas sistemáticas</v-btn>
+        <v-btn text primary>Sistema de gestión de datos de sensado</v-btn>
         </v-col>
         <v-col
         cols=12
@@ -44,18 +44,18 @@
       </v-row>
     </v-system-bar>
     <v-card height='100%'>
-      <v-overlay
-      v-if="registerAttemp"
+      <v-dialog
+      v-model="registerAttemp"
     >
       <RegisterUser @register="handleRegister"></RegisterUser>
-    </v-overlay>
-    <v-overlay
-      v-if="loginAttemp"
+      </v-dialog>
+    <v-dialog
+      v-model="loginAttemp"
+      width="300"
     >
       <LoginComponent @login="handleLogin"></LoginComponent>
-    </v-overlay>
+      </v-dialog>
      <router-view/>
-    <FooterComponent></FooterComponent>
     <v-alert
       v-if="loginSuccess"
       elevation="3"
@@ -70,6 +70,7 @@
       @click="noBalance = false"
     >Se ha autenticado correctamente
     </v-alert>
+    <FooterComponent></FooterComponent>
     </v-card>
   </v-app>
 </template>

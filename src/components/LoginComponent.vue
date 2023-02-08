@@ -7,6 +7,12 @@
           cols="12"
           md="4"
         >
+        <v-btn
+        text
+        primary
+        class="text-align: left"
+        width="100%"
+        >Introduzca sus datos:</v-btn>
           <v-text-field
             v-model="username"
             label="Usuario"
@@ -29,6 +35,7 @@
     </v-container>
   </v-form>
   <v-card-actions>
+    <v-spacer></v-spacer>
      <v-btn
     color="success"
     @click="login"

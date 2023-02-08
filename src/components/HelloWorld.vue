@@ -18,7 +18,7 @@
         cols=10
         md=7
         >
-        <v-btn text color='blue' class="mt-4">Contratos activos por usuario<v-icon>mdi-refresh</v-icon></v-btn>
+        <v-btn text color='blue' class="mt-4" @click="getAllUsers">Contratos activos por usuario<v-icon>mdi-refresh</v-icon></v-btn>
         </v-col>
       </v-row>
     </div>
@@ -103,7 +103,7 @@
             md=2
             class="text-center"
             >
-            Paciente: {{ file.patientNames }} {{ file.patientLastNames }}
+            <v-btn text color='blue' class="ml-2">Paciente: {{ file.patientNames }} {{ file.patientLastNames }}</v-btn>
             </v-col>
           </v-row>
           <v-divider></v-divider>
