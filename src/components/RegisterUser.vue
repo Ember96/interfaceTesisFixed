@@ -125,7 +125,10 @@ export default {
             });
             this.$store.state.userData = this.userData;
             console.log(this.$store.state.userData);
-            this.$emit('register', 'correct');
+
+            if (typeof this.userData !== 'undefined') {
+              this.$emit('register', 'correct');
+            }
         },
         incorrectData () {
           this.$emit('register', 'cancelled');

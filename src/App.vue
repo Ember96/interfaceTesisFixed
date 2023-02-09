@@ -121,6 +121,7 @@ import RegisterUser from "./components/RegisterUser.vue";
       handleRegister (register) {
         if (register == 'correct') {
           this.registerAttemp = true;
+          this.handleLoggedIn();
         }
         this.registerAttemp = false;
       },
