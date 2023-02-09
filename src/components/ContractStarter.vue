@@ -139,7 +139,7 @@ export default {
         v => !!v || 'E-mail is required',
         v => /.+@.+/.test(v) || 'E-mail must be valid',
       ],
-      dataTypeItems: ['Voz', 'Interacción con el robot EVA', 'Estados de ánimo', 'Historial médico'],
+      dataTypeItems: ['Grabación de voz', 'Interacción con el robot EVA', 'Estados de ánimo'],
       //dataFormatItems: ['Audio', 'Video', 'Imagen', 'Documento', 'Otro'],
       dataType: [],
       search: null,
