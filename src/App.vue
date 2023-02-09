@@ -9,7 +9,7 @@
       <v-row>
         <v-col
         cols=12
-        md=4
+        md=3
         >
         <v-btn text primary @click="$router.replace({ path: '/' })">Sistema de gestión de datos de sensado</v-btn>
         </v-col>
