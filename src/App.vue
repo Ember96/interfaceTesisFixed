@@ -15,14 +15,14 @@
         </v-col>
         <v-col
         cols=12
-        md=1
+        md=2
         class="primary  py-4 text-center white--text"
         >
         <v-btn text primary @click="loginAttemp = true">Autenticarse</v-btn>
         </v-col>
         <v-col
         cols=12
-        md=1
+        md=2
         class="primary  py-4 text-center white--text"
         >
         <v-btn text primary @click="registerAttemp = true">Registrarse</v-btn>

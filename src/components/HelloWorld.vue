@@ -209,7 +209,7 @@
                 console.log(error);
             });
 
-          await this.$axios.post(`data/${this.usersFull[seller].files[chosenFile]._id}`, {
+          /*await this.$axios.post(`data/${this.usersFull[seller].files[chosenFile]._id}`, {
             user_id: this.usersFull[seller]._id
             })
           .then(function (response) {
@@ -217,7 +217,7 @@
           })
           .catch(function (error) {
               console.log(error);
-          });
+          });*/
 
           await this.$axios.post('data', {
                 ipfsAddr: newFile.ipfsAddr,//this.fileData[3],
