@@ -192,9 +192,10 @@
         console.log(buyerNewBalance);
         let sellerNewBalance = this.usersFull[seller].balance + this.usersFull[seller].files[chosenFile].remuneration;
         console.log(sellerNewBalance);
-        let buyerNewFiles = this.$store.state.userData.files;
+        //let buyerNewFiles = this.$store.state.userData.files;
         let newFile = this.usersFull[seller].files[chosenFile];
-        buyerNewFiles.push(this.usersFull[seller].files[chosenFile]._id);
+        
+        //buyerNewFiles.push(this.usersFull[seller].files[chosenFile]._id);
         let buyerID = this.$store.state.userData._id;
         let sellerID = this.usersFull[seller]._id;
         if (buyerNewBalance >= 0) {
@@ -218,7 +219,7 @@
               console.log(error);
           });*/
 
-          await this.$axios.post('data', {
+          /*await this.$axios.post('data', {
                 ipfsAddr: newFile.ipfsAddr,//this.fileData[3],
                 fileName: newFile.fileName,
                 fileSize: newFile.fileSize,
@@ -235,7 +236,26 @@
             })
             .catch(function (error) {
                 console.log(error);
-            });
+            });*/
+
+            /*await this.$axios.post('data', {
+                ipfsAddr: newFile.ipfsAddr,//this.fileData[3],
+                fileName: newFile.fileName,
+                fileSize: newFile.fileSize,
+                dataFormat: newFile.dataFormat,
+                remuneration: newFile.remuneration,
+                dataTypes: newFile.dataTypes,
+                patientNames: newFile.patientNames,
+                patientLastNames: newFile.patientLastNames,
+                user_id: sellerID
+            })
+            .then(function (response) {
+                console.log(response, 'new file for buyer');
+                return response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });*/
 
             await this.$axios.put(`users/${sellerID}`, {
                 balance: sellerNewBalance
@@ -246,6 +266,8 @@
             .catch(function (error) {
                 console.log(error);
             });
+
+            window.open('https://tesis.infura-ipfs.io/ipfs/' + newFile.ipfsAddr);
 
         } else this.noBalance = true;
         this.getAllUsers();
