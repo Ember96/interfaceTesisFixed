@@ -85,18 +85,15 @@
       @click="noBalance = false"
     >Se ha autenticado correctamente
     </v-alert>
-    <FooterComponent></FooterComponent>
     </v-card>
   </v-app>
 </template>
 
 <script>
-import FooterComponent from "./components/FooterComponent.vue";
 import LoginComponent from "./components/LoginComponent.vue";
 import RegisterUser from "./components/RegisterUser.vue";
   export default {
     components: {
-      FooterComponent,
       LoginComponent,
       RegisterUser
        },
