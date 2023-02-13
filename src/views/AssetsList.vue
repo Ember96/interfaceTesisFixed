@@ -180,9 +180,7 @@ export default {
         window.open('https://tesis.infura-ipfs.io/ipfs/' + this.files[index].addr);
       },
       async deleteContract (index) {
-        await this.$axios.post(`data/${this.files[index]._id}`, {
-            user_id: this.usersFull[seller]._id
-            })
+        await this.$axios.post(`data/${this.files[index]._id}`)
           .then(function (response) {
               console.log(response, 'file delete brute response');
           })
