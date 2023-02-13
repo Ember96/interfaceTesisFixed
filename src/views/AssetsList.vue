@@ -67,7 +67,7 @@
         <v-list-item-content>
         <v-list-item-icon>
           <v-icon @click="getIpfsFile(i)">mdi-download</v-icon>
-          <v-icon @click="getIpfsFile(i)">mdi-trash</v-icon>
+          <v-icon @click="deleteContract(i)">mdi-trash</v-icon>
         </v-list-item-icon>
         </v-list-item-content>
         </v-list-item>
@@ -179,8 +179,8 @@ export default {
         console.log(Buffer.from(content).toString('base64'), 'buffer');*/
         window.open('https://tesis.infura-ipfs.io/ipfs/' + this.files[index].addr);
       },
-      async deleteContract () {
-        await this.$axios.post(`data/${this.usersFull[seller].files[chosenFile]._id}`, {
+      async deleteContract (index) {
+        await this.$axios.post(`data/${this.files[index]._id}`, {
             user_id: this.usersFull[seller]._id
             })
           .then(function (response) {
