@@ -122,7 +122,7 @@
             v-if="noData"
             elevation="3"
             type="error"
-            @click="signSuccess = false"
+            @click="noData = false"
           >Debe subir datos primero
           </v-alert>
     </v-card>

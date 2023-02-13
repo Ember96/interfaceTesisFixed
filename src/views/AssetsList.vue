@@ -58,16 +58,19 @@
           <v-list-item-content>
             <v-icon v-text="file.icon"></v-icon>
           </v-list-item-content>
+          <v-divider vertical></v-divider>
           <v-list-item-content>
             <v-list-item-title><v-btn text color='blue'>{{ file.name }}</v-btn></v-list-item-title>
           </v-list-item-content>
+          <v-divider vertical></v-divider>
           <v-list-item-content>
             <v-list-item-title><v-btn text color='blue'>{{ file.size }} kilobytes</v-btn></v-list-item-title>
           </v-list-item-content>
+          <v-divider vertical></v-divider>
         <v-list-item-content>
         <v-list-item-icon>
-          <v-icon @click="getIpfsFile(i)">mdi-download</v-icon>
-          <v-icon @click="deleteContract(i)">mdi-trash</v-icon>
+          <v-icon class="mx-auto" @click="getIpfsFile(i)">mdi-download</v-icon>
+          <v-icon class="mx-auto" @click="deleteContract(i)">mdi-delete</v-icon>
         </v-list-item-icon>
         </v-list-item-content>
         </v-list-item>
@@ -143,7 +146,7 @@ export default {
           else if (element.dataFormat.slice(0,5) == "audio") icon = "mdi-music-box-outline"
           else if (element.dataFormat.slice(0,5) == "video") icon = "mdi-movie-open-outline"
           else icon = "mdi-file"
-          this.files.push({icon: icon, name: element.fileName, size: element.fileSize, addr: element.ipfsAddr})
+          this.files.push({icon: icon, name: element.fileName, size: element.fileSize, addr: element.ipfsAddr, id: element._id})
         });
       },
       async getUserFiles () {
@@ -180,7 +183,7 @@ export default {
         window.open('https://tesis.infura-ipfs.io/ipfs/' + this.files[index].addr);
       },
       async deleteContract (index) {
-        await this.$axios.post(`data/${this.files[index]._id}`)
+        await this.$axios.post(`data/${this.files[index].id}`)
           .then(function (response) {
               console.log(response, 'file delete brute response');
           })
