@@ -118,6 +118,13 @@
             @click="signSuccess = false"
           >Firmado correctamente
           </v-alert>
+          <v-alert
+            v-if="noData"
+            elevation="3"
+            type="error"
+            @click="signSuccess = false"
+          >Debe subir datos primero
+          </v-alert>
     </v-card>
 </template>
 
@@ -126,6 +133,7 @@ export default {
     props: ['fileData'],
     data: () => ({
       consentCheck: false,
+      noData: false,
       ownData: false,
       valid: false,
       firstname: '',//this.$userData.names,
@@ -156,7 +164,8 @@ export default {
     methods: {
       async signContract () {
         console.log(this.fileData);
-        let res = await this.$axios.post('data', {
+        if (typeof this.fileData != 'undefined') {
+          let res = await this.$axios.post('data', {
                 ipfsAddr: this.fileData[3],//this.fileData[3],
                 fileName: this.fileData[1],
                 fileSize: this.fileData[2],
@@ -177,19 +186,19 @@ export default {
         if (typeof res != 'undefined') {
           this.signSuccess = true;
         }
+        } else this.noData = true;
+      }
       },
       updateNames () {
         console.log(this.$store.state.userData);
         this.firstname = this.$store.state.userData.names;
         this.lastname = this.$store.state.userData.lastNames;
       },
+      checkReadyToSign () {
+        
     },
     /*created() {
  
     },*/
 }
 </script>
-
-<style>
-
-</style>
