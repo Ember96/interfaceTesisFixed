@@ -4,6 +4,7 @@ import vuetify from './plugins/vuetify'
 import router from './router'
 import axios from "axios";
 import Vuex from "vuex";
+import './registerServiceWorker'
 
 Vue.use(Vuex);
 
