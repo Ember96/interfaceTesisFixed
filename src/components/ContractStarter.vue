@@ -164,7 +164,7 @@ export default {
     methods: {
       async signContract () {
         console.log(this.fileData);
-        if (typeof this.fileData != 'undefined') {
+        if (typeof this.fileData != 'undefined' && this.fileData.length != 0) {
           let res = await this.$axios.post('data', {
                 ipfsAddr: this.fileData[3],//this.fileData[3],
                 fileName: this.fileData[1],
