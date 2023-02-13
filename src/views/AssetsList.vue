@@ -45,7 +45,7 @@
             <v-list-item-title><v-btn text color='blue'>Tamaño de archivo</v-btn></v-list-item-title>
           </v-list-item-content>
           <v-list-item-content>
-            <v-list-item-title><v-btn text color='blue'>Descargar</v-btn></v-list-item-title>
+            <v-list-item-title><v-btn text color='blue'>Acciones</v-btn></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       <v-list-item>
@@ -67,6 +67,7 @@
         <v-list-item-content>
         <v-list-item-icon>
           <v-icon @click="getIpfsFile(i)">mdi-download</v-icon>
+          <v-icon @click="getIpfsFile(i)">mdi-trash</v-icon>
         </v-list-item-icon>
         </v-list-item-content>
         </v-list-item>
@@ -178,6 +179,17 @@ export default {
         console.log(Buffer.from(content).toString('base64'), 'buffer');*/
         window.open('https://tesis.infura-ipfs.io/ipfs/' + this.files[index].addr);
       },
+      async deleteContract () {
+        await this.$axios.post(`data/${this.usersFull[seller].files[chosenFile]._id}`, {
+            user_id: this.usersFull[seller]._id
+            })
+          .then(function (response) {
+              console.log(response, 'file delete brute response');
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
+      }
     },
     mounted () {
       this.getUserFiles()
