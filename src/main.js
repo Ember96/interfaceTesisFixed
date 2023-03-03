@@ -4,7 +4,6 @@ import vuetify from './plugins/vuetify'
 import router from './router'
 import axios from "axios";
 import Vuex from "vuex";
-import './registerServiceWorker'
 
 Vue.use(Vuex);
 
@@ -24,8 +23,9 @@ const store = new Vuex.Store({
 });
 
 const axiosClient = axios.create({
-  //baseURL: "http://localhost:3000/" 
-  baseURL: "https://sensingdata.onrender.com/"
+  baseURL: "http://localhost:3000/"
+  //baseURL: "https://sensingdata.onrender.com/"
+
 });
 
 
