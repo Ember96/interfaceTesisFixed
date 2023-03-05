@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AssetsList from '../views/AssetsList.vue'
+import SensingTools from '../views/SensingTools.vue'
 
 
 Vue.use(VueRouter)
@@ -16,6 +17,11 @@ const routes = [
     path: '/upload',
     name: 'upload',
     component: AssetsList
+  },
+  {
+    path: '/sensing',
+    name: 'sensing',
+    component: SensingTools
   },
   {
     path: '/about',
