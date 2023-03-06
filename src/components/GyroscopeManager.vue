@@ -4,13 +4,10 @@
             <h2 class="blue--text">Lecturas del Giroscopio</h2>
         </v-card-title>
         <v-card-text>
-            <label class="blue--text">Velocidad angular en el eje X: {{ gyroX }} RPS</label>
-            <br>
-            <label class="blue--text">Velocidad angular en el eje Y: {{ gyroY }} RPS</label>
-            <br>
-            <label class="blue--text">Velocidad angular en el eje Z: {{ gyroZ }} RPS</label>
-            <br>
-            <label class="blue--text">Timestamp: {{ gyroTimestamp }} segundos.milésimas</label>
+            <label class="blue--text">Velocidad angular en el eje X: </label> <v-input type="number" v-model="gyroX"></v-input>
+            <label class="blue--text">Velocidad angular en el eje Y: </label> <v-input type="number" v-model="gyroY"></v-input>
+            <label class="blue--text">Velocidad angular en el eje Z: </label> <v-input type="number" v-model="gyroZ"></v-input>
+            <label class="blue--text">Timestamp: </label> <v-input type="number" v-model="gyroTimestamp"></v-input>
         </v-card-text>
         <v-card-actions>
             <v-btn color="primary" @click="startGyroscope">Iniciar</v-btn>

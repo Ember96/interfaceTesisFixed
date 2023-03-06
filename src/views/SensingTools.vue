@@ -9,17 +9,14 @@
 
         <v-tab>
             Acelerómetro
-            <v-icon>mdi-phone</v-icon>
         </v-tab>
 
         <v-tab>
             Giroscopio
-            <v-icon>mdi-heart</v-icon>
         </v-tab>
 
         <v-tab>
             Geolocalización
-            <v-icon>mdi-account-box</v-icon>
         </v-tab>
     </v-tabs>
         <v-tabs-items v-model="tab">

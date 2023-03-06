@@ -4,13 +4,10 @@
             <h2 class="indigo--text">Lectura del Acelerómetro</h2>
         </v-card-title>
         <v-card-text>
-            <label class="indigo--text">Aceleración en el eje X: {{ angularSpeedX }} m/s²</label>
-            <br>
-            <label class="indigo--text">Aceleración en el eje Y: {{ angularSpeedY }} m/s²</label>
-            <br>
-            <label class="indigo--text">Aceleración en el eje Z: {{ angularSpeedZ }} m/s²</label>
-            <br>
-            <label class="indigo--text">Timestamp: {{ accelTimestamp }} segundos.milésimas</label>
+            <label class="indigo--text">Aceleración en el eje X: </label> <v-input type="number" v-model="angularSpeedX"></v-input>
+            <label class="indigo--text">Aceleración en el eje Y: </label> <v-input type="number" v-model="angularSpeedY"></v-input>
+            <label class="indigo--text">Aceleración en el eje Z: </label> <v-input type="number" v-model="angularSpeedZ"></v-input>
+            <label class="indigo--text">Timestamp: </label> <v-input type="number" v-model="accelTimestamp"></v-input>
         </v-card-text>
         <v-card-actions>
             <v-btn color="primary" @click="startAccelerator">Iniciar</v-btn>
