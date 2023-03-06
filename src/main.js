@@ -23,7 +23,7 @@ const store = new Vuex.Store({
 });
 
 const axiosClient = axios.create({
-  baseURL: "http://localhost:3000/"
+  baseURL: "https://localhost:3000/"
   //baseURL: "https://sensingdata.onrender.com/"
 });
 

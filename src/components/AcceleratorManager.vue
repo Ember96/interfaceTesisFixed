@@ -1,13 +1,16 @@
 <template>
     <v-card>
         <v-card-title>
-            <h1>Lecturas del sensor de aceleración</h1>
+            <h2 class="indigo--text">Lectura del Acelerómetro</h2>
         </v-card-title>
         <v-card-text>
-            <label>Velocidad angular en el eje X: </label> <v-input type="number" v-model="angularSpeedX" />
-            <label>Velocidad angular en el eje Y: </label> <v-input type="number" v-model="angularSpeedY" />
-            <label>Velocidad angular en el eje Z: </label> <v-input type="number" v-model="angularSpeedZ" />
-            <label>Timestamp: </label> <v-input type="number" v-model="accelTimestamp" />
+            <label class="indigo--text">Aceleración en el eje X: {{ angularSpeedX }} m/s²</label>
+            <br>
+            <label class="indigo--text">Aceleración en el eje Y: {{ angularSpeedY }} m/s²</label>
+            <br>
+            <label class="indigo--text">Aceleración en el eje Z: {{ angularSpeedZ }} m/s²</label>
+            <br>
+            <label class="indigo--text">Timestamp: {{ accelTimestamp }} segundos.milésimas</label>
         </v-card-text>
         <v-card-actions>
             <v-btn color="primary" @click="startAccelerator">Iniciar</v-btn>
