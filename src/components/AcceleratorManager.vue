@@ -94,6 +94,9 @@ export default {
             let accelDate;
             this.accelerometer.addEventListener("reading", () => {
                 accelDate = new Date();
+                console.log("X" + this.accelerometer.x);
+                console.log("Y" + this.accelerometer.y);
+                console.log("Z" + this.accelerometer.z);
                 this.accelX = this.accelerometer.x.toFixed(5);
                 this.accelY = this.accelerometer.y.toFixed(5);
                 this.accelZ = this.accelerometer.z.toFixed(5);
