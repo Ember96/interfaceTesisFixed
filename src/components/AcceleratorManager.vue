@@ -4,10 +4,34 @@
             <h2 class="indigo--text">Lectura del Acelerómetro</h2>
         </v-card-title>
         <v-card-text>
-            <label class="indigo--text">Aceleración en el eje X: </label> <v-input type="number" v-model="accelerometer.x"></v-input>
-            <label class="indigo--text">Aceleración en el eje Y: </label> <v-input type="number" v-model="accelerometer.y"></v-input>
-            <label class="indigo--text">Aceleración en el eje Z: </label> <v-input type="number" v-model="accelerometer.z"></v-input>
-            <label class="indigo--text">Timestamp: </label> <v-input type="number" v-model="accelTimestamp"></v-input>
+            <ul>
+                <v-col>
+                    <v-row>
+                        <v-col>
+                            <label class="indigo--text">Aceleración en el eje X: </label>
+                        </v-col>
+                        <v-col>
+                            <v-input type="number" v-model="accelX"></v-input>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col>
+                            <label class="indigo--text">Aceleración en el eje Y: </label>
+                        </v-col>
+                        <v-col>
+                            <v-input type="number" v-model="accelY"></v-input>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col>
+                            <label class="indigo--text">Aceleración en el eje Z: </label>
+                        </v-col>
+                        <v-col>
+                            <v-input type="number" v-model="accelZ"></v-input>
+                        </v-col>
+                    </v-row>
+                </v-col>
+            </ul>
         </v-card-text>
         <v-card-actions>
             <v-btn color="primary" @click="startAccelerator">Iniciar</v-btn>
