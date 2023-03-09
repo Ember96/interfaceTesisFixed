@@ -58,9 +58,9 @@ export default {
     data() {
         return {
             accelerometer: {},
-            accelX: new String(),
-            accelY: new String(),
-            accelZ: new String(),
+            accelX: new Number(),
+            accelY: new Number(),
+            accelZ: new Number(),
             accelRec: new String(),
             accelTimestamp: new String(),
         }
