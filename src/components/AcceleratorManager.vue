@@ -7,34 +7,34 @@
             <ul>
                 <v-col>
                     <v-row>
-                        <v-col cols="6">
+                        <v-col cols="8">
                             <label class="indigo--text">Aceleración en el eje X: </label>
                         </v-col>
-                        <v-col cols="6">
+                        <v-col cols="4">
                             <v-input type="number" v-model="accelX">{{ accelX }}</v-input>
                         </v-col>
                     </v-row>
                     <v-row>
-                        <v-col cols="6">
+                        <v-col cols="8">
                             <label class="indigo--text">Aceleración en el eje Y: </label>
                         </v-col>
-                        <v-col cols="6">
+                        <v-col cols="4">
                             <v-input type="number" v-model="accelY">{{ accelX }}</v-input>
                         </v-col>
                     </v-row>
                     <v-row>
-                        <v-col cols="6">
+                        <v-col cols="8">
                             <label class="indigo--text">Aceleración en el eje Z: </label>
                         </v-col>
-                        <v-col cols="6">
+                        <v-col cols="4">
                             <v-input type="number" v-model="accelZ">{{ accelX }}</v-input>
                         </v-col>
                     </v-row>
                     <v-row>
-                        <v-col cols="6">
+                        <v-col cols="8">
                             <label class="indigo--text">Timestamp: </label>
                         </v-col>
-                        <v-col cols="6">
+                        <v-col cols="4">
                             <v-input type="number" v-model="accelTimestamp">{{ accelX }}</v-input>
                         </v-col>
                     </v-row>
@@ -78,6 +78,9 @@ export default {
         resetAccelerator() {
             console.log("Reiniciando el sensor de aceleración");
             this.accelRec = new String();
+            this.accelX = new String();
+            this.accelY = new String();
+            this.accelZ = new String();
         },
         downloadAccelRec() {
             let hiddenElement = document.createElement('a');
