@@ -34,7 +34,7 @@ export default {
         startAccelerator() {
             console.log("Iniciando el sensor de aceleración");
             this.accelerometer.start();
-            console.log(this.angularSpeedX)
+            console.log(this.accelerometer.x)
         },
         stopAccelerator() {
             console.log("Deteniendo el sensor de aceleración");
@@ -46,7 +46,7 @@ export default {
         },
         downloadAccelRec() {
             let hiddenElement = document.createElement('a');
-            hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(accelRec);
+            hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(this.accelRec);
             hiddenElement.target = '_blank';
             hiddenElement.download = 'Accelerometer Record.csv';
             hiddenElement.click();
