@@ -47,6 +47,7 @@ export default {
         startAccelerator() {
             console.log("Iniciando el sensor de aceleración");
             accelerometer.start();
+            console.log(this.angularSpeedX)
         },
         stopAccelerator() {
             console.log("Deteniendo el sensor de aceleración");
