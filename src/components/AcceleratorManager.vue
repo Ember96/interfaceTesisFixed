@@ -26,6 +26,9 @@ export default {
     data() {
         return {
             accelerometer: {},
+            accelX: new String(),
+            accelY: new String(),
+            accelZ: new String(),
             accelRec: new String(),
             accelTimestamp: new String(),
         }
@@ -34,7 +37,7 @@ export default {
         startAccelerator() {
             console.log("Iniciando el sensor de aceleración");
             this.accelerometer.start();
-            console.log(this.accelerometer.x)
+            console.log(this.accelX)
         },
         stopAccelerator() {
             console.log("Deteniendo el sensor de aceleración");
@@ -52,13 +55,16 @@ export default {
             hiddenElement.click();
         },
         acceleratorInstance() {
-            let accelerometer = new LinearAccelerationSensor({ frequency: 200 });
+            this.accelerometer = new LinearAccelerationSensor({ frequency: 200 });
             let accelDate;
-            accelerometer.addEventListener("reading", () => {
-                this.accelerometer = accelerometer;
+            this.accelerometer.addEventListener("reading", () => {
                 accelDate = new Date();
+                this.accelX = this.accelerometer.x.toFixed(5);
+                this.accelY = this.accelerometer.y.toFixed(5);
+                this.accelZ = this.accelerometer.z.toFixed(5);
+
                 this.accelTimestamp = accelDate.getSeconds() + "." + accelDate.getMilliseconds();
-                this.accelRec += this.accelerometer.x.toFixed(5) + "," + this.accelerometer.y.toFixed(5) + "," + this.accelerometer.z.toFixed(5) + "," + this.accelTimestamp
+                this.accelRec += this.accelX + "," + this.accelY + "," + this.accelZ + "," + this.accelTimestamp
                 this.accelRec += "\n";
             });
         }
