@@ -7,29 +7,36 @@
             <ul>
                 <v-col>
                     <v-row>
-                        <v-col>
+                        <v-col cols="6">
                             <label class="indigo--text">Aceleración en el eje X: </label>
                         </v-col>
-                        <v-col>
-                            <v-input type="number" v-model="accelX"></v-input>
+                        <v-col cols="6">
+                            <v-input type="number" v-model="accelX">{{ accelX }}</v-input>
                         </v-col>
                     </v-row>
                     <v-row>
-                        <v-col>
+                        <v-col cols="6">
                             <label class="indigo--text">Aceleración en el eje Y: </label>
                         </v-col>
-                        <v-col>
-                            <v-input type="number" v-model="accelY"></v-input>
+                        <v-col cols="6">
+                            <v-input type="number" v-model="accelY">{{ accelX }}</v-input>
                         </v-col>
                     </v-row>
                     <v-row>
-                        <v-col>
+                        <v-col cols="6">
                             <label class="indigo--text">Aceleración en el eje Z: </label>
                         </v-col>
-                        <v-col>
-                            <v-input type="number" v-model="accelZ"></v-input>
+                        <v-col cols="6">
+                            <v-input type="number" v-model="accelZ">{{ accelX }}</v-input>
                         </v-col>
                     </v-row>
+                    <v-row>
+                        <v-col cols="6">
+                            <label class="indigo--text">Timestamp: </label>
+                        </v-col>
+                        <v-col cols="6">
+                            <v-input type="number" v-model="accelTimestamp">{{ accelX }}</v-input>
+                        </v-col>
                 </v-col>
             </ul>
         </v-card-text>
