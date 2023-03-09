@@ -90,7 +90,7 @@ export default {
             hiddenElement.click();
         },
         acceleratorInstance() {
-            this.accelerometer = new LinearAccelerationSensor({ frequency: 200 });
+            this.accelerometer = new LinearAccelerationSensor({ frequency: 200, referenceName: "device"});
             let accelDate;
             this.accelerometer.addEventListener("reading", () => {
                 accelDate = new Date();
