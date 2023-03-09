@@ -37,6 +37,7 @@
                         <v-col cols="6">
                             <v-input type="number" v-model="accelTimestamp">{{ accelX }}</v-input>
                         </v-col>
+                    </v-row>
                 </v-col>
             </ul>
         </v-card-text>
