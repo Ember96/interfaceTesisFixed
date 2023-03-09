@@ -4,9 +4,9 @@
             <h2 class="indigo--text">Lectura del Acelerómetro</h2>
         </v-card-title>
         <v-card-text>
-            <label class="indigo--text">Aceleración en el eje X: </label> <v-input type="number" v-model="angularSpeedX" value="angularSpeedX"></v-input>
-            <label class="indigo--text">Aceleración en el eje Y: </label> <v-input type="number" v-model="angularSpeedY"></v-input>
-            <label class="indigo--text">Aceleración en el eje Z: </label> <v-input type="number" v-model="angularSpeedZ"></v-input>
+            <label class="indigo--text">Aceleración en el eje X: </label> <v-input type="number" v-model="accelerometer.x"></v-input>
+            <label class="indigo--text">Aceleración en el eje Y: </label> <v-input type="number" v-model="accelerometer.y"></v-input>
+            <label class="indigo--text">Aceleración en el eje Z: </label> <v-input type="number" v-model="accelerometer.z"></v-input>
             <label class="indigo--text">Timestamp: </label> <v-input type="number" v-model="accelTimestamp"></v-input>
         </v-card-text>
         <v-card-actions>
@@ -21,41 +21,28 @@
 </template>
 
 <script>
-
-let accelerometer = new LinearAccelerationSensor({ frequency: 200 });
-let accelDate;
-let accelTimestamp = new String();
-let accelRec = new String();
-
-accelerometer.addEventListener("reading", () => {
-    accelDate = new Date();
-    accelTimestamp = accelDate.getSeconds() + "." + accelDate.getMilliseconds();
-    accelRec += accelerometer.x.toFixed(5) + "," + accelerometer.y.toFixed(5) + "," + accelerometer.z.toFixed(5) + "," + accelTimestamp
-    accelRec += "\n";
-});
 export default {
     name: "AcceleratorManager",
     data() {
         return {
-            angularSpeedX: accelerometer.x,
-            angularSpeedY: accelerometer.y,
-            angularSpeedZ: accelerometer.z,
-            accelTimestamp: accelTimestamp
+            accelerometer: {},
+            accelRec: new String(),
+            accelTimestamp: new String(),
         }
     },
     methods : {
         startAccelerator() {
             console.log("Iniciando el sensor de aceleración");
-            accelerometer.start();
+            this.accelerometer.start();
             console.log(this.angularSpeedX)
         },
         stopAccelerator() {
             console.log("Deteniendo el sensor de aceleración");
-            accelerometer.stop();
+            this.accelerometer.stop();
         },
         resetAccelerator() {
             console.log("Reiniciando el sensor de aceleración");
-            accelRec = new String();
+            this.accelRec = new String();
         },
         downloadAccelRec() {
             let hiddenElement = document.createElement('a');
@@ -63,7 +50,20 @@ export default {
             hiddenElement.target = '_blank';
             hiddenElement.download = 'Accelerometer Record.csv';
             hiddenElement.click();
+        },
+        acceleratorInstance() {
+            this.accelerometer = new Accelerometer({ frequency: 200 });
+            let accelDate;
+            this.accelerometer.addEventListener("reading", () => {
+                accelDate = new Date();
+                this.accelTimestamp = accelDate.getSeconds() + "." + accelDate.getMilliseconds();
+                this.accelRec += this.accelerometer.x.toFixed(5) + "," + this.accelerometer.y.toFixed(5) + "," + this.accelerometer.z.toFixed(5) + "," + this.accelTimestamp
+                this.accelRec += "\n";
+            });
         }
+    },
+    mounted() {
+        this.acceleratorInstance();
     }
 }
 </script>
